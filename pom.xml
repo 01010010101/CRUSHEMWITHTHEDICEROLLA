@@ -7,7 +7,7 @@
   <properties>
     <maven.compiler.source>19</maven.compiler.source>
     <maven.compiler.target>19</maven.compiler.target>
-    <src.dir>src/main</src.dir>
+    <src.dir>src/main/java</src.dir>
   </properties>
   <build>
     <sourceDirectory>${src.dir}</sourceDirectory>
