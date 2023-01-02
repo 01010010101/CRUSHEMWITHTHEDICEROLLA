@@ -3,6 +3,8 @@ package model;
 
 import lombok.Data;
 
+import java.util.HashMap;
+
 @Data
 public class CharList {
     private String name;
@@ -40,4 +42,8 @@ private double SizeMod = (((Height-160)/30)*0.5)+(((Weight-60)/30)*0.5)+1;
     //Weapons//
 
     //Inventory//
+    private HashMap<String, Skill> Skills = new HashMap<>();
+    public void addSkill(Skill skill){
+        Skills.put(skill.getSkillName(), skill);
+    }
 }
