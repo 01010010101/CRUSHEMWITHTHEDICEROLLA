@@ -1,7 +1,9 @@
 package service;
 
 import model.CharList;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CharListServiceImp implements CharListService {
     @Override
     public void addCharList() {
