@@ -3,11 +3,11 @@ package service;
 import model.CharList;
 
 public interface CharListService {
-    void addCharList();
+    void addCharList(CharList charList);
 
-    void removeCharList();
+    void removeCharList(Integer id);
 
-    CharList readCharList();
+    void updateCharList(CharList charList);
 
-    void updateCharList();
+    CharList getCharListById(Integer id);
 }

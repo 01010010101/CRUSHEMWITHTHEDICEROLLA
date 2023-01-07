@@ -70,11 +70,11 @@ private double SizeMod = (((Height-160)/30)*0.5)+(((Weight-60)/30)*0.5)+1;
 
     //Inventory//
 
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @Fetch(FetchMode.JOIN)
-//    @JoinTable(name = "skills",
-//            joinColumns = {@JoinColumn(name = "user_id")},
-//            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @ManyToMany(fetch = FetchType.LAZY)
+    @Fetch(FetchMode.JOIN)
+    @JoinTable(name = "chars_skills",
+            joinColumns = {@JoinColumn(name = "char_id")},
+            inverseJoinColumns = @JoinColumn(name = "skill_name"))
     private HashMap<String, Skill> Skills = new HashMap<>();
     public void addSkill(Skill skill){
         Skills.put(skill.getSkillName(), skill);
