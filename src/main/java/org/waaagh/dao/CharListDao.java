@@ -1,6 +1,6 @@
-package dao;
+package org.waaagh.dao;
 
-import model.CharList;
+import org.waaagh.model.CharList;
 
 public interface CharListDao {
     void addCharList();

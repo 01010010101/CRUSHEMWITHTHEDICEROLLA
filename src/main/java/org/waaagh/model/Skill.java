@@ -1,10 +1,14 @@
-package model;
+package org.waaagh.model;
 
 import lombok.Data;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Data
+@Entity
+@Table(name = "skills")
 public class Skill {
     @Id
     private String SkillName;

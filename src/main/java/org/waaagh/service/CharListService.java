@@ -1,6 +1,6 @@
-package service;
+package org.waaagh.service;
 
-import model.CharList;
+import org.waaagh.model.CharList;
 
 public interface CharListService {
     void addCharList(CharList charList);

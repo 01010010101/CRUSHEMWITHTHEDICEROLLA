@@ -1,4 +1,4 @@
-package model;
+package org.waaagh.model;
 
 
 import lombok.Data;
@@ -7,6 +7,7 @@ import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.HashMap;
+import java.util.Set;
 
 @Data
 @Entity
@@ -75,8 +76,8 @@ private double SizeMod = (((Height-160)/30)*0.5)+(((Weight-60)/30)*0.5)+1;
     @JoinTable(name = "chars_skills",
             joinColumns = {@JoinColumn(name = "char_id")},
             inverseJoinColumns = @JoinColumn(name = "skill_name"))
-    private HashMap<String, Skill> Skills = new HashMap<>();
+    private Set<Skill> Skills;
     public void addSkill(Skill skill){
-        Skills.put(skill.getSkillName(), skill);
+        Skills.add(skill);
     }
 }

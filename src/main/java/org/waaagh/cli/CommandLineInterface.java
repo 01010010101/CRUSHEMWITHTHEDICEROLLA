@@ -1,4 +1,4 @@
-package cli;
+package org.waaagh.cli;
 
 import java.util.Scanner;
 
