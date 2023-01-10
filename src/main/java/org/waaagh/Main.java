@@ -6,8 +6,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.waaagh.model.CharList;
+import org.waaagh.model.Skill;
+import org.waaagh.repositories.SkillsRepository;
 import org.waaagh.service.CharListServiceImp;
 import org.waaagh.service.NonWebService;
+import org.waaagh.service.SkillServiceImp;
+
+import static org.waaagh.num.SkillType.LINEAR;
 
 @SpringBootApplication
 class Main implements CommandLineRunner {
@@ -17,25 +22,34 @@ class Main implements CommandLineRunner {
     private NonWebService service;
     @Autowired
     private CharListServiceImp imp;
-
+    @Autowired
+    private SkillServiceImp skillImp;
 
     public static void main(String[] args) {
-//        new SpringApplicationBuilder(org.waaagh.Main.class)
-//                .web(WebApplicationType.NONE) // .REACTIVE, .SERVLET
-//                .run(args);
-
-        // org.waaagh.cli.run();
-        args = new String[]{"Hi", "There"};
-        SpringApplication.run(Main.class, args);
-
+        SpringApplication.run(Main.class, "Hi", "There");
     }
 
     @Override
     public void run(String... args) throws Exception {
         service.printMessage(args);
         CharList charList = new CharList();
-        charList.setName("WAAAAA");
+        charList.setName("WAAAAAGH");
         charList.setAge(2);
+
+//        Skill skill = new Skill();
+//        skill.setSkillName("Tough_Physique");
+//        skill.setSkillType(LINEAR);
+//        skill.setSkillText("Персонаж обладает на удивление крепким телосложением" +
+//                " и способен выдержать на 3 травмы больше за каждый пункт навыка");
+//        skill.setSkillSTATDependency("ENDURANCE");
+//        skill.setSkillActionCost(null);
+//        skill.setSkillCost(0);
+//        skill.setSkillCooldown(0);
+//        skill.setSkillEffect("");
+//        skillImp.addSkill(skill);
+//
+//        charList.addSkill(skill);
+
         imp.addCharList(charList);
     }
 }
