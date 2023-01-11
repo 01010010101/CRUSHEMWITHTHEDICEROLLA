@@ -7,7 +7,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.waaagh.model.CharList;
 import org.waaagh.model.Skill;
-import org.waaagh.repositories.SkillsRepository;
 import org.waaagh.service.CharListServiceImp;
 import org.waaagh.service.NonWebService;
 import org.waaagh.service.SkillServiceImp;
@@ -36,20 +35,27 @@ class Main implements CommandLineRunner {
         charList.setName("WAAAAAGH");
         charList.setAge(2);
 
-//        Skill skill = new Skill();
-//        skill.setSkillName("Tough_Physique");
-//        skill.setSkillType(LINEAR);
-//        skill.setSkillText("Персонаж обладает на удивление крепким телосложением" +
-//                " и способен выдержать на 3 травмы больше за каждый пункт навыка");
-//        skill.setSkillSTATDependency("ENDURANCE");
-//        skill.setSkillActionCost(null);
-//        skill.setSkillCost(0);
-//        skill.setSkillCooldown(0);
-//        skill.setSkillEffect("");
+        Skill skill = new Skill();
+        skill.setName("Tough_Physique");
+        skill.setSkillType(LINEAR);
+        skill.setSkillText("Персонаж обладает на удивление крепким телосложением" +
+                " и способен выдержать на 3 травмы больше за каждый пункт навыка");
+        skill.setSkillSTATDependency("ENDURANCE");
+        skill.setSkillActionCost(null);
+        skill.setSkillCost(0);
+        skill.setSkillCooldown(0);
+        skill.setSkillEffect("");
 //        skillImp.addSkill(skill);
-//
-//        charList.addSkill(skill);
+
+        System.out.println(skill.getSkillText());
+
+//        skill = skillImp.getSkillByName("Tough_Physique");
+        System.out.println(skill.getName());
+        System.out.println(skill.getSkillText());
+
+        charList.addSkill(skill);
 
         imp.addCharList(charList);
+        System.out.println("Done");
     }
 }

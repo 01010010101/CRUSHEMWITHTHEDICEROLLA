@@ -15,7 +15,7 @@ import java.util.Set;
 public class CharList {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column
     private String name;
@@ -79,5 +79,8 @@ private double SizeMod = (((Height-160)/30)*0.5)+(((Weight-60)/30)*0.5)+1;
     private Set<Skill> Skills;
     public void addSkill(Skill skill){
         Skills.add(skill);
+    }
+
+    public CharList() {
     }
 }
