@@ -6,6 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.waaagh.model.Skill;
 import org.waaagh.repositories.SkillsRepository;
 
+import java.util.Optional;
+
 @Service
 public class SkillServiceImp implements SkillService {
 
@@ -36,6 +38,7 @@ public class SkillServiceImp implements SkillService {
 
     @Override
     public Skill getSkillByName(String skillName) {
-        return repository.getById(skillName);
+        Optional<Skill> findSkill = repository.findById(skillName);
+        return findSkill.orElse(null);
     }
 }
