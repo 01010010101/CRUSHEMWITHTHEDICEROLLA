@@ -7,16 +7,20 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.waaagh.cli.CommandLineInterface;
 import org.waaagh.model.CharList;
 import org.waaagh.model.Skill;
+import org.waaagh.repositories.SkillsRepository;
 import org.waaagh.service.CharListServiceImp;
 import org.waaagh.service.NonWebService;
 import org.waaagh.service.SkillServiceImp;
 
 import java.util.Set;
 
-import static org.waaagh.num.Culture.ELF_WINTER;
+import static javax.security.sasl.Sasl.STRENGTH;
+import static org.waaagh.num.Actions.FULL_ACTION;
+import static org.waaagh.num.Culture.MERCENARY;
 import static org.waaagh.num.Race.ELF;
-import static org.waaagh.num.SkillType.LINEAR;
-import static org.waaagh.num.SkillType.RACIAL;
+import static org.waaagh.num.SkillType.*;
+import static org.waaagh.num.Stats.DEXTERITY;
+import static org.waaagh.num.Stats.PERCEPTION;
 
 @SpringBootApplication
 class Main implements CommandLineRunner {
@@ -28,6 +32,8 @@ class Main implements CommandLineRunner {
     private CharListServiceImp imp;
     @Autowired
     private SkillServiceImp skillImp;
+    @Autowired
+    private SkillsRepository skillsRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(Main.class, "Hi", "There");
@@ -50,7 +56,7 @@ class Main implements CommandLineRunner {
         charList.setHeight(170);
         charList.setWeight(60);
         charList.setRace(ELF);
-        charList.setCulture(ELF_WINTER);
+        charList.setCulture(MERCENARY);
         Skill elf = new Skill();
         elf.setName("Elf_Winter");
         elf.setSkillType(RACIAL);
@@ -96,26 +102,54 @@ class Main implements CommandLineRunner {
         heighned_Perception.setSkillType(RACIAL);
         heighned_Perception.setSkillText("эльфы слышат больше звуков чем другие расы, вдобавок различая больше запахов, что снижает сложность соответствующих бросков на ситуативные 2-4-6, однако получаемый звуковой урон повышается на 1.");
         skillImp.addSkill(heighned_Perception);
+        Skill combat_training = new Skill();
+        combat_training.setName("Combat_Training");
+        combat_training.setSkillType(LINEAR);
+        combat_training.setSkillSTATDependency(String.valueOf(STRENGTH));
+        combat_training.setSkillSTATDependency(String.valueOf(DEXTERITY));
+        combat_training.setSkillSTATDependency(String.valueOf(PERCEPTION));
+        combat_training.setSkillText("Боевая подготовка отображает навык персонажа в обращении с оружием, ее удвоенное значение добавляется к броскам атаки, пробоя, запаса сил, определению финта, усиленному блоку и многим другим боевым навыкам, высокий уровень боевой подготовки позволяет открывать спецприемы и скиллы.");
+        combat_training.setSkillLevel(2);
+        skillImp.addSkill(combat_training);
+        Skill marksman = new Skill();
+        marksman.setName("Marksman");
+        marksman.setSkillType(LINEAR);
+        marksman.setSkillSTATDependency(String.valueOf(STRENGTH));
+        marksman.setSkillSTATDependency(String.valueOf(DEXTERITY));
+        marksman.setSkillSTATDependency(String.valueOf(PERCEPTION));
+        marksman.setSkillText("Навык Стрелок отображает умение персонажа обращаться с дальнобойным оружием, заменяет собой навык Боевой Подготовки, в случае если навык Стрелок выше");
+        marksman.setSkillLevel(3);
+        skillImp.addSkill(marksman);
+        Skill sniper_Shot = new Skill();
+        sniper_Shot.setName("Sniper's_Shot");
+        sniper_Shot.setSkillType(ACTIVE);
+        sniper_Shot.setSkillSTATDependency(String.valueOf(PERCEPTION));
+        sniper_Shot.setSkillText("Навык позволяющий персонажу гарантированно поразить цель на расстоянии до Восприятие х20 метров");
+        sniper_Shot.setSkillFlashText("Снайперский выстрел!");
+        sniper_Shot.setSkillCooldown(5);
+        sniper_Shot.setSkillStaminaCost(5);
+        sniper_Shot.setSkillActionCost(FULL_ACTION);
+        skillImp.addSkill(sniper_Shot);
 
-        Skill skill = new Skill();
-        skill.setName("Tough_Physique");
-        skill.setSkillType(LINEAR);
-        skill.setSkillText("Персонаж обладает на удивление крепким телосложением" +
-                " и способен выдержать на 3 травмы больше за каждый пункт навыка");
-        skill.setSkillSTATDependency("ENDURANCE");
-        skill.setSkillActionCost(null);
-        skill.setSkillCost(0);
-        skill.setSkillCooldown(0);
-        skill.setSkillEffect("");
-        skillImp.addSkill(skill);
-
-        System.out.println(skill.getSkillText());
-
-//        skill = skillImp.getSkillByName("Tough_Physique");
-        System.out.println(skill.getName());
-        System.out.println(skill.getSkillText());
-
-        charList.addSkill(skill);
+//        Skill skill = new Skill();
+//        skill.setName("Tough_Physique");
+//        skill.setSkillType(LINEAR);
+//        skill.setSkillText("Персонаж обладает на удивление крепким телосложением" +
+//                " и способен выдержать на 3 травмы больше за каждый пункт навыка");
+//        skill.setSkillSTATDependency("ENDURANCE");
+//        skill.setSkillActionCost(null);
+//        skill.setSkillCost(0);
+//        skill.setSkillCooldown(0);
+//        skill.setSkillEffect("");
+//        skillImp.addSkill(skill);
+//
+//        System.out.println(skill.getSkillText());
+//
+////        skill = skillImp.getSkillByName("Tough_Physique");
+//        System.out.println(skill.getName());
+//        System.out.println(skill.getSkillText());
+//
+//        charList.addSkill(skill);
 
         imp.addCharList(charList);
         System.out.println("Done with adding skill and charlist");
