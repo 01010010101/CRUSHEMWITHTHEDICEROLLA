@@ -1,15 +1,17 @@
 package org.waaagh;
 
-import org.waaagh.cli.CommandLineInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.waaagh.cli.CommandLineInterface;
 import org.waaagh.model.CharList;
 import org.waaagh.model.Skill;
 import org.waaagh.service.CharListServiceImp;
 import org.waaagh.service.NonWebService;
 import org.waaagh.service.SkillServiceImp;
+
+import java.util.Set;
 
 import static org.waaagh.num.SkillType.LINEAR;
 
@@ -45,7 +47,7 @@ class Main implements CommandLineRunner {
         skill.setSkillCost(0);
         skill.setSkillCooldown(0);
         skill.setSkillEffect("");
-//        skillImp.addSkill(skill);
+        skillImp.addSkill(skill);
 
         System.out.println(skill.getSkillText());
 
@@ -56,6 +58,23 @@ class Main implements CommandLineRunner {
         charList.addSkill(skill);
 
         imp.addCharList(charList);
-        System.out.println("Done");
+        System.out.println("Done with adding skill and charlist");
+        System.out.println("Let try to take this shit back");
+
+        charList = imp.getCharListById(1L);
+
+        System.out.println(charList.getName());
+        System.out.println(charList.getAge());
+
+        System.out.println("Get skill from a charlist");
+        Set<Skill> skillsHash = charList.getSkills();
+        Skill newSkill = skillsHash.stream().iterator().next();
+        System.out.println(newSkill.getName());
+        System.out.println(newSkill.getSkillText());
+
+        System.out.println("Get skill from skill table");
+        newSkill = skillImp.getSkillByName("Tough_Physique");
+        System.out.println(newSkill.getName());
+        System.out.println(newSkill.getSkillText());
     }
 }

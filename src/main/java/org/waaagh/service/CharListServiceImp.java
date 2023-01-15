@@ -26,7 +26,7 @@ public class CharListServiceImp implements CharListService {
 
     @Override
     @Transactional
-    public void removeCharList(Integer id) {
+    public void removeCharList(Long id) {
         repository.delete(getCharListById(id));
     }
 
@@ -37,7 +37,7 @@ public class CharListServiceImp implements CharListService {
     }
 
     @Override
-    public CharList getCharListById(Integer id) {
+    public CharList getCharListById(Long id) {
         Optional<CharList> findChar = repository.findById(id);
         return findChar.orElse(null);
     }

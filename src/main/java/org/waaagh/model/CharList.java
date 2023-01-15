@@ -6,7 +6,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -78,6 +78,9 @@ private double SizeMod = (((Height-160)/30)*0.5)+(((Weight-60)/30)*0.5)+1;
             inverseJoinColumns = @JoinColumn(name = "skill_name"))
     private Set<Skill> Skills;
     public void addSkill(Skill skill){
+        if (Skills == null) {
+            Skills = new HashSet<>();
+        }
         Skills.add(skill);
     }
 
