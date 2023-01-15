@@ -4,6 +4,7 @@ package org.waaagh.model;
 import lombok.Data;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.waaagh.num.Culture;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -55,11 +56,17 @@ private double Height;
 private double Weight;
 @Column
 private double SizeMod = (((Height-160)/30)*0.5)+(((Weight-60)/30)*0.5)+1;
+
+    public void setCulture(org.waaagh.num.Culture elfWinter) {
+    }
+
     //SkillsRacial//
-    @Column
-    private int Race;
-    @Column
-    private int Culture;
+    private enum Race{
+        
+    };
+    private enum Culture{
+        
+    };
     //SkillsBackstory//
     //SkillsLinear//
     //SkillsActive//

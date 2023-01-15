@@ -13,7 +13,9 @@ import org.waaagh.service.SkillServiceImp;
 
 import java.util.Set;
 
+import static org.waaagh.num.Culture.ELF_WINTER;
 import static org.waaagh.num.SkillType.LINEAR;
+import static org.waaagh.num.SkillType.RACIAL;
 
 @SpringBootApplication
 class Main implements CommandLineRunner {
@@ -34,8 +36,46 @@ class Main implements CommandLineRunner {
     public void run(String... args) throws Exception {
         service.printMessage(args);
         CharList charList = new CharList();
-        charList.setName("WAAAAAGH");
-        charList.setAge(2);
+        charList.setName("Silent");
+        charList.setAge(65);
+        charList.setSTRENGTH(4);
+        charList.setDEXTERITY(11);
+        charList.setENDURANCE(6);
+        charList.setMAGICK(3);
+        charList.setINTUITION(5);
+        charList.setPERCEPTION(10);
+        charList.setKNOWLEGE(9);
+        charList.setCHARISMA(4);
+        charList.setHeight(170);
+        charList.setWeight(60);
+        charList.setCulture(ELF_WINTER);
+        Skill elf = new Skill();
+        elf.setName("Elf_Winter");
+        elf.setSkillType(RACIAL);
+        elf.setSkillText("Персонаж - эльф, имеет эльфийскую физиологию, расовые навыки и культуру, в человеческом обществе считается нелюдью");
+        skillImp.addSkill(elf);
+        Skill elvenDuskVision = new Skill();
+        elvenDuskVision.setName("Improved_DuskVision");
+        elvenDuskVision.setSkillType(RACIAL);
+        elvenDuskVision.setSkillText("Чистокровные эльфы имеют сумеречное зрение и не получают штрафа -2 Восприятия утром");
+        skillImp.addSkill(elvenDuskVision);
+        Skill elvenBleed = new Skill();
+        elvenBleed.setName("Bleed_Vulnerability");
+        elvenBleed.setSkillType(RACIAL);
+        elvenBleed.setSkillText("У эльфов степень полученного кровотечения растет на 1, кроме того его эффекты наступают на 1 раунд быстрее(в случае Сильного и Критического кровотечения полные эффекты работают в начале раунда и дополнительно наносят 1 в конце)");
+        skillImp.addSkill(elvenBleed);
+        Skill industrial_Allergy = new Skill();
+        industrial_Allergy.setName("Industrial_Allergy");
+        industrial_Allergy.setSkillType(RACIAL);
+        industrial_Allergy.setSkillText("Эльфы склонны вырабатывать аллергическую реакцию на \"ненатуральные\" вещества, такие как порох, металлы, алхимическая резина и т.д.");
+        skillImp.addSkill(industrial_Allergy);
+        Skill easy_Walk = new Skill();
+        easy_Walk.setName("Easy_Walk");
+        easy_Walk.setSkillType(RACIAL);
+        easy_Walk.setSkillText("Эльфы не тратят усталость на длительные переходы по пересеченной местности, но только если они не перегружены.");
+        skillImp.addSkill(easy_Walk);
+        Skill
+
 
         Skill skill = new Skill();
         skill.setName("Tough_Physique");

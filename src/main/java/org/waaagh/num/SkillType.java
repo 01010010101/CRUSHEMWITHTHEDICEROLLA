@@ -4,6 +4,7 @@ public enum SkillType {
     LINEAR,
     ACTIVE,
     PASSIVE,
+    RACIAL,
     GIFT,
     DARKGIFT,
     STATCHANGE,
