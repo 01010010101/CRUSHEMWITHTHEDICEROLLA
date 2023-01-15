@@ -14,6 +14,7 @@ import org.waaagh.service.SkillServiceImp;
 import java.util.Set;
 
 import static org.waaagh.num.Culture.ELF_WINTER;
+import static org.waaagh.num.Race.ELF;
 import static org.waaagh.num.SkillType.LINEAR;
 import static org.waaagh.num.SkillType.RACIAL;
 
@@ -48,6 +49,7 @@ class Main implements CommandLineRunner {
         charList.setCHARISMA(4);
         charList.setHeight(170);
         charList.setWeight(60);
+        charList.setRace(ELF);
         charList.setCulture(ELF_WINTER);
         Skill elf = new Skill();
         elf.setName("Elf_Winter");
@@ -74,8 +76,26 @@ class Main implements CommandLineRunner {
         easy_Walk.setSkillType(RACIAL);
         easy_Walk.setSkillText("Эльфы не тратят усталость на длительные переходы по пересеченной местности, но только если они не перегружены.");
         skillImp.addSkill(easy_Walk);
-        Skill
-
+        Skill nature_Wisdom = new Skill();
+        nature_Wisdom.setName("Nature's_Wisdom");
+        nature_Wisdom.setSkillType(RACIAL);
+        nature_Wisdom.setSkillText("Эльфы могут получать доступ к расовой магии Эльфийских Мудрецов.");
+        skillImp.addSkill(nature_Wisdom);
+        Skill magick_Resistance_Elf = new Skill();
+        magick_Resistance_Elf.setName("Elven_Magick_Resistance");
+        magick_Resistance_Elf.setSkillType(RACIAL);
+        magick_Resistance_Elf.setSkillText("Резист к Магии, естественная сопротивляемость организма к попытке воздействовать на него магией изнутри/напрямую. Игнорируется Целителями.(Конечность 13+М.Р/2, Корпус 23+М.Р.)");
+        skillImp.addSkill(magick_Resistance_Elf);
+        Skill inhuman_Dodge = new Skill();
+        inhuman_Dodge.setName("Inhuman_Dodge");
+        inhuman_Dodge.setSkillType(RACIAL);
+        inhuman_Dodge.setSkillText("Чистокровные эльфы получают +1 к роллу уклонения, при равном броске защиты уклонением против атаки противника, эльф, по умолчанию выигрывает, однако если у противника есть навык на точность атаки, либо на атаку без промаха, используется правило парадокса(соревновательные броски удачи). Особенность игнорируется если у противника есть навык Боевая подготовка(эльфы).");
+        skillImp.addSkill(inhuman_Dodge);
+        Skill heighned_Perception = new Skill();
+        heighned_Perception.setName("Heighned_Perception");
+        heighned_Perception.setSkillType(RACIAL);
+        heighned_Perception.setSkillText("эльфы слышат больше звуков чем другие расы, вдобавок различая больше запахов, что снижает сложность соответствующих бросков на ситуативные 2-4-6, однако получаемый звуковой урон повышается на 1.");
+        skillImp.addSkill(heighned_Perception);
 
         Skill skill = new Skill();
         skill.setName("Tough_Physique");
