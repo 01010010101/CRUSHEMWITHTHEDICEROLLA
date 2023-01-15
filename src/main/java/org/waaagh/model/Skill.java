@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Table(name = "skills")
 public class Skill {
     @Id
-    @Column(length = 300)
+    @Column(length = 248)
     private String name;
     private SkillType SkillType;
     @Column(length = 1024)

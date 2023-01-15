@@ -160,15 +160,17 @@ class Main implements CommandLineRunner {
         System.out.println(charList.getName());
         System.out.println(charList.getAge());
 
-        System.out.println("Get skill from a charlist");
-        Set<Skill> skillsHash = charList.getSkills();
-        Skill newSkill = skillsHash.stream().iterator().next();
-        System.out.println(newSkill.getName());
-        System.out.println(newSkill.getSkillText());
+        Skill getSkill;
+
+//        System.out.println("Get skill from a charlist");
+//        Set<Skill> skillsHash = charList.getSkills();
+//        newSkill = skillsHash.stream().iterator().next();
+//        System.out.println(newSkill.getName());
+//        System.out.println(newSkill.getSkillText());
 
         System.out.println("Get skill from skill table");
-        newSkill = skillImp.getSkillByName("Tough_Physique");
-        System.out.println(newSkill.getName());
-        System.out.println(newSkill.getSkillText());
+        getSkill = skillImp.getSkillByName("Elf_Winter");
+        System.out.println(getSkill.getName());
+        System.out.println(getSkill.getSkillText());
     }
 }
